@@ -1,7 +1,7 @@
 import React from 'react';
-import { auth } from '../lib/auth';
+import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
-import { getSession } from '../lib/hooks';
+import { getSession } from '@/lib/hooks';
 
 interface DashboardProps {
   // You can define any props needed here

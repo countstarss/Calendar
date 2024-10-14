@@ -16,7 +16,7 @@ const Navbar = ({
     <div className='flex py-5 px-5 items-center justify-between'>
       <Link href="/dashboard" className='flex items-center gap-2'>
         <Image src={Logo} alt="logo" width={100} height={100} className='size-10 object-contain aspect-square'/>
-        <h1 className='text-2xl font-bold'>Time<span className='text-blue-500'>Master</span></h1>
+        <h1 className='text-2xl font-bold'>Event<span className='text-blue-500'>Master</span></h1>
       </Link>
 
       <AuthModal />

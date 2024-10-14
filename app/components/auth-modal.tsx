@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import React from 'react';
 import Logo from '@/public/logo.png'
 import Image from 'next/image';
-import { auth, signIn, signOut } from '../lib/auth';
+import { auth, signIn, signOut } from '@/lib/auth';
 import SubmitButton from './submit-button';
+import { redirect } from 'next/navigation';
 
 
 interface AuthModalProps {
@@ -17,7 +18,11 @@ const AuthModal = async ({
   
   const session = await auth()
   const user = session?.user
+  console.log(user)
 
+  if(user) {
+    redirect('/dashboard')
+  }
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -35,9 +40,10 @@ const AuthModal = async ({
         }
       </DialogTrigger>
       <DialogContent className='sm:max-w-[360px]'>
+        <DialogTitle>Menu</DialogTitle>
         <DialogHeader className='flex flex-row gap-2 justify-center items-center'>
           <Image src={Logo} alt="logo" width={100} height={100} className='size-10 object-contain aspect-square'/>
-          <h4 className='text-3xl font-bold'>Time<span className='text-blue-500'>Master</span></h4>
+          <h4 className='text-3xl font-bold'>Event<span className='text-blue-500'>Master</span></h4>
         </DialogHeader>
 
         <div className='flex flex-col mt-5 gap-3'>

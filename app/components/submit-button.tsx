@@ -7,7 +7,6 @@ import GithubLogo from '@/public/github.svg';
 import { useFormStatus } from 'react-dom';
 
 interface SubmitButtonProps {
-  // You can define any props needed here
   title: string;
 }
 
@@ -28,7 +27,6 @@ const SubmitButton = ({
             <Image src={title === "GitHub" ? GithubLogo : GoogleLogo} alt='google' width={100} height={100} className='size-4 text-white'/>
             Sign in with {title}
           </Button >
-
         )
       }
     </>
