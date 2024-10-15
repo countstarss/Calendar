@@ -32,19 +32,24 @@ interface DashboardLayoutProps {
 }
 
 async function getData(email:string) {
-  // userName 和 你的域名挂钩，所以需要检查一下是否设置
-  const data = prisma.user.findUnique({
+  // NOTE: userName 和 你的域名挂钩，所以需要检查一下是否设置
+  const data = await prisma.user.findUnique({
     where: {
       email: email
     },
     select: {
       userName: true,
+      grantId: true,
     }
-  })
+  })// 将promise类型转为可直接使用的
 
-  // 如果 userName 为空，则跳转到 onborading 页面
-  if(!data) {
+  // NOTE: 如果 userName 为空，说明还没有设置空间域名，则跳转到 onborading 页面
+  if(!data?.userName) {
     return redirect('/onborading')
+  }
+  // NOTE: 如果 grantId 为空，说明还没有授权Nylas，则跳转到 onborading/grant-id 页面
+  if(!data?.grantId) {
+    return redirect('/onborading/grant-id')
   }
   return data
 }

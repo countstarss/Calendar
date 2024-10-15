@@ -33,7 +33,7 @@ export const OAuthButton = ({
   );
 };
 export const SubmitButton = ({
-  
+  title = "Create Space"
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus()
 
@@ -46,7 +46,7 @@ export const SubmitButton = ({
           </Button >
         ) : (
           <Button className='outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2'>
-            Create Space
+            {title}
           </Button >
         )
       }

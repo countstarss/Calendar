@@ -25,7 +25,9 @@ const AuthModal = async ({
     redirect('/dashboard')
   }
   return (
-    <Dialog>
+    <Dialog
+      // MARK: Try for free
+    >
       <DialogTrigger asChild>
         {
           user ? (
@@ -47,11 +49,13 @@ const AuthModal = async ({
           <h4 className='text-3xl font-bold'>Event<span className='text-blue-500'>Master</span></h4>
         </DialogHeader>
 
-        <div className='flex flex-col mt-5 gap-3'>
+        <div className='flex flex-col mt-5 gap-3'
+          // MARK: OAuth 登录
+        >
           <form action={async () => {
             "use server"
             await signIn("github")
-            await InsertUser()
+            // await InsertUser()
           }} className='w-full'>
             <OAuthButton title="GitHub" />
           </form>

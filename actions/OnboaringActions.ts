@@ -30,6 +30,7 @@ export async function OnbardingAction(prevState: any,formData: FormData) {
     return submission.reply();
   }
 
+  // NOTE: 点击Create Space,更新用户信息
   const data = await prisma.user.update({
     where: {
       email: session?.user?.email as string
@@ -40,6 +41,7 @@ export async function OnbardingAction(prevState: any,formData: FormData) {
     }
   })
 
-  return redirect("/dashboard") 
+  // NOTE: 更新userName之后，跳转到 onborading/grant-id 页面
+  return redirect("/onboarding/grant-id") 
 
 }

@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useEffect, useState } from "react";
-import { OAuthButton, SubmitButton } from "@/app/components/submit-button";
+import { SubmitButton } from "@/app/components/submit-button";
 import { useFormState } from "react-dom";
 import { OnbardingAction } from "@/actions/OnboaringActions";
 import { useForm } from "@conform-to/react";
