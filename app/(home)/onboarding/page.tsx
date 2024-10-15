@@ -104,7 +104,7 @@ const OnboardingPage = () => {
               </div>
             </CardContent>
             <CardFooter className="w-full">
-              <SubmitButton />
+              <SubmitButton title="Create Space"/>
             </CardFooter>
           </form>
         </Card>

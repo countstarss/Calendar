@@ -33,7 +33,7 @@ export const OAuthButton = ({
   );
 };
 export const SubmitButton = ({
-  title = "Create Space"
+  title
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus()
 

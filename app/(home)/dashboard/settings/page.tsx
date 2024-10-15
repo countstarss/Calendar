@@ -1,14 +1,37 @@
-"use client";
+import SettingsForm from "@/app/components/settings-form";
+import prisma from "@/lib/db";
+import { notFound } from "next/navigation";
+import React from "react";
+import { getSession } from "@/lib/hooks";
 
-interface SettingsPageProps {}
+async function getData(email: string) {
+  const data = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+    select: {
+      name: true,
+      email: true,
+      image: true,
+    },
+  });
 
-const SettingsPage = ({}: SettingsPageProps) => {
+  if (!data) {
+    return notFound();
+  }
 
+  return data;
+}
 
+const SettingsPage = async () => {
+  const session = await getSession();
+  const data = await getData(session.user?.email as string);
   return (
-    <div>
-      <h1>SettingsPage</h1>
-    </div>
+    <SettingsForm
+      email={data.email as string}
+      fullName={data.name as string}
+      profileImage={data.image as string}
+    />
   );
 };
 

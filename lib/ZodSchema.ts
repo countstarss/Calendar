@@ -8,7 +8,7 @@ export const onboardingSchema = z.object({
   }),
 })
 
-//MARK: - Onboarding Schema Validator
+//MARK: - Onboarding
 export function onboardingSchemaValidator(options: {
   isUsernameUnique: () => Promise<boolean>;
 }) {
@@ -48,3 +48,10 @@ export function onboardingSchemaValidator(options: {
     fullName: z.string().min(3).max(30),
   });
 }
+
+// MARK: - Settings
+export const settingsSchema = z.object({
+  email: z.string().email(),
+  fullName: z.string().min(3).max(30),
+  profileImage: z.string().optional(),
+});
