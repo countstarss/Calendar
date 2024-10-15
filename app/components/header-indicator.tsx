@@ -13,7 +13,7 @@ const HeaderIndicator = ({
   const pathname = usePathname()
 
   return (
-    <div>
+    <div className='w-full'>
       <h1 className='text-xl font-normal'>{dashboardLinks.filter(link => link.href === pathname)[0].name}</h1>
     </div>
   );

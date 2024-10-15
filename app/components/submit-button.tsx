@@ -7,10 +7,10 @@ import GithubLogo from '@/public/github.svg';
 import { useFormStatus } from 'react-dom';
 
 interface SubmitButtonProps {
-  title: string;
+  title?: string;
 }
 
-const SubmitButton = ({
+export const OAuthButton = ({
   title,
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus()
@@ -19,12 +19,12 @@ const SubmitButton = ({
     <>
       {
         pending ? (
-          <Button className='w-full bg-gray-200 text-white font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px]'>
+          <Button className='outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2'>
             <Loader2 className='size-4 animate-spin' />
           </Button >
         ) : (
           <Button className='outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2'>
-            <Image src={title === "GitHub" ? GithubLogo : GoogleLogo} alt='google' width={100} height={100} className='size-4 text-white'/>
+            <Image src={GithubLogo} alt='Logo' width={100} height={100} className='size-4 text-white'/>
             Sign in with {title}
           </Button >
         )
@@ -32,5 +32,24 @@ const SubmitButton = ({
     </>
   );
 };
+export const SubmitButton = ({
+  
+}: SubmitButtonProps) => {
+  const { pending } = useFormStatus()
 
-export default SubmitButton;
+  return (
+    <>
+      {
+        pending ? (
+          <Button className='outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2'>
+            <Loader2 className='size-4 animate-spin' />Please wait...
+          </Button >
+        ) : (
+          <Button className='outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2'>
+            Create Space
+          </Button >
+        )
+      }
+    </>
+  );
+};

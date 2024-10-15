@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Logo from '@/public/logo.png'
 import Image from 'next/image';
-import { dashboardLinks, DashboardLinks } from '../components/dashboard-links';
+import { dashboardLinks, DashboardLinks } from '@/app/components/dashboard-links';
 import {
   Sheet,
   SheetContent,
@@ -22,31 +22,44 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { getSession } from '@/lib/hooks';
 import { Button } from '@/components/ui/button';
 import { signOut } from '@/lib/auth';
-import { DashboardLinksMobile } from '../components/dashboard-links-mobile';
-import HeaderIndicator from '../components/header-indicator';
+import { DashboardLinksMobile } from '@/app/components/dashboard-links-mobile';
+import HeaderIndicator from '@/app/components/header-indicator';
+import prisma from '@/lib/db';
 
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
+async function getData(email:string) {
+  // userName 和 你的域名挂钩，所以需要检查一下是否设置
+  const data = prisma.user.findUnique({
+    where: {
+      email: email
+    },
+    select: {
+      userName: true,
+    }
+  })
+
+  // 如果 userName 为空，则跳转到 onborading 页面
+  if(!data) {
+    return redirect('/onborading')
+  }
+  return data
+}
+
 const DashboardLayout = async ({
   children
 }: DashboardLayoutProps) => {
 
-  // const pathname = usePathname();
   const session = await getSession();
+  console.log("user: ==> ",session?.user)
   if (!session) {
     redirect('/');
   }
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
+  const data = await getData(session?.user?.email as string)
 
   return (
     <>
