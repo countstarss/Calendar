@@ -27,11 +27,7 @@ const SettingsPage = async () => {
   const session = await getSession();
   const data = await getData(session.user?.email as string);
   return (
-    <SettingsForm
-      email={data.email as string}
-      fullName={data.name as string}
-      profileImage={data.image as string}
-    />
+    <SettingsForm/>
   );
 };
 

@@ -23,10 +23,9 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 interface SettingsFormProps {
-  // You can define any props needed here
 }
 
-const SettingsForm = ({}: SettingsFormProps) => {
+const SettingsForm = () => {
   
 
   return (

@@ -27,3 +27,22 @@ export async function InsertUser() {
     }
   })
 }
+
+
+// export async function UpdateUser(userName: string, fullName: string) {
+//   const session = await getSession()
+
+//   if(!session?.user) {
+//     return
+//   }
+
+//   await prisma.user.update({
+//     where: {
+//       email: session?.user?.email as string
+//     },
+//     data: {
+//       userName: userName,
+//       name: fullName,
+//     }
+//   })
+// }

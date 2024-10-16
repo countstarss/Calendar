@@ -4,6 +4,8 @@ import { getSession } from "@/lib/hooks";
 import { onboardingSchema, onboardingSchemaValidator } from "@/lib/ZodSchema";
 import { parseWithZod } from "@conform-to/zod";
 import { redirect } from "next/navigation";
+import { InsertUser } from "./UserActions";
+import { insertAvailability } from "./AvailabilityActions";
 
 export async function OnbardingAction(prevState: any,formData: FormData) {
 
@@ -31,6 +33,8 @@ export async function OnbardingAction(prevState: any,formData: FormData) {
   }
 
   // NOTE: 点击Create Space,更新用户信息
+  await InsertUser()
+  await insertAvailability()
   const data = await prisma.user.update({
     where: {
       email: session?.user?.email as string
@@ -43,5 +47,4 @@ export async function OnbardingAction(prevState: any,formData: FormData) {
 
   // NOTE: 更新userName之后，跳转到 onborading/grant-id 页面
   return redirect("/onboarding/grant-id") 
-
 }

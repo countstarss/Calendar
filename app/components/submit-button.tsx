@@ -8,6 +8,7 @@ import { useFormStatus } from 'react-dom';
 
 interface SubmitButtonProps {
   title?: string;
+  className?: string;
 }
 
 export const OAuthButton = ({
@@ -33,19 +34,19 @@ export const OAuthButton = ({
   );
 };
 export const SubmitButton = ({
-  title
+  title,className
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus()
-
+  
   return (
     <>
       {
         pending ? (
-          <Button className='outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2'>
+          <Button className={`outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2 ${className}`}>
             <Loader2 className='size-4 animate-spin' />Please wait...
           </Button >
         ) : (
-          <Button className='outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2'>
+          <Button className={`outline w-full font-bold hover:text-black hover:bg-gray-200 border-gray-400 border-[1px] flex gap-2 ${className}`}>
             {title}
           </Button >
         )

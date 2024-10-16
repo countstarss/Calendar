@@ -9,16 +9,17 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  userName      String?   @unique
-  grantId       String?
-  grantEmail    String?
-  accounts      Account[]
-  sessions      Session[]
+  id             String         @id @default(cuid())
+  name           String?
+  email          String?        @unique
+  emailVerified  DateTime?      @map("email_verified")
+  image          String?
+  userName       String?        @unique
+  grantId        String?
+  grantEmail     String?
+  accounts       Account[]
+  sessions       Session[]
+  availabilities Availability[]
 
   @@map("users")
 }
@@ -59,4 +60,29 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
+}
+
+model Availability {
+  id String @id @default(uuid())
+
+  day      Day
+  fromTime String // e.g., '08:00'
+  tillTime String // e.g., '18:00'
+  isActive Boolean @default(true) // Toggle availability for the day
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Day {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
 }

@@ -1,5 +1,3 @@
-import { SettingsSchema } from "@/lib/ZodSchema";
-
 'use server'
 import prisma from "@/lib/db";
 import { getSession } from "@/lib/hooks";

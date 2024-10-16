@@ -45,11 +45,11 @@ async function getData(email:string) {
 
   // NOTE: 如果 userName 为空，说明还没有设置空间域名，则跳转到 onborading 页面
   if(!data?.userName) {
-    return redirect('/onborading')
+    return redirect('/onboarding')
   }
   // NOTE: 如果 grantId 为空，说明还没有授权Nylas，则跳转到 onborading/grant-id 页面
   if(!data?.grantId) {
-    return redirect('/onborading/grant-id')
+    return redirect('/onboarding/grant-id')
   }
   return data
 }
@@ -59,7 +59,6 @@ const DashboardLayout = async ({
 }: DashboardLayoutProps) => {
 
   const session = await getSession();
-  console.log("user: ==> ",session?.user)
   if (!session) {
     redirect('/');
   }
