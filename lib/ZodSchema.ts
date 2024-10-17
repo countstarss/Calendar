@@ -55,3 +55,13 @@ export const settingsSchema = z.object({
   fullName: z.string().min(3).max(30),
   profileImage: z.string().optional(),
 });
+
+// MARK: - Event Type
+export const eventTypeSchema = z.object({
+  title: z.string().min(3).max(50),
+  duration: z.number().min(1).max(100),
+  description: z.string().min(3).max(30),
+  url: z.string().min(3).max(50),
+  videoCallSoftware: z.string().min(3).max(30),
+});
+

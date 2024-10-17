@@ -27,7 +27,9 @@ const SettingsPage = async () => {
   const session = await getSession();
   const data = await getData(session.user?.email as string);
   return (
-    <SettingsForm/>
+    <div className="flex justify-center items-center h-[calc(100vh-100px)]">
+      <SettingsForm/>
+    </div>
   );
 };
 

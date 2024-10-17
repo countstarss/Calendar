@@ -9,13 +9,13 @@ export const insertAvailability = async () => {
 
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     // 通过当前session中的email字段找到数据库对应用户的id
-    const userId = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
         where: {
             email: session?.user?.email as string
         }
     })
     const availabilityData = days.map(day => ({
-        userId: userId?.id as string,
+        userId: user?.id as string,
         day: day as Day,
         isActive: true,
         fromTime: '08:00',

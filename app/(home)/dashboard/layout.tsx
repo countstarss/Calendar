@@ -25,6 +25,7 @@ import { signOut } from '@/lib/auth';
 import { DashboardLinksMobile } from '@/app/components/dashboard-links-mobile';
 import HeaderIndicator from '@/app/components/header-indicator';
 import prisma from '@/lib/db';
+import BackAndForWardButton from '@/app/components/back-forward-button';
 
 
 interface DashboardLayoutProps {
@@ -83,8 +84,6 @@ const DashboardLayout = async ({
                 <h1 className='text-xl font-bold'>Event<span className='text-blue-500'>Master</span></h1>
               </Link>
             </div>
-
-
             <div className='px-2'>
               <DashboardLinks />
             </div>
@@ -94,6 +93,7 @@ const DashboardLayout = async ({
 
         <div className='flex flex-col'>
           <header className='flex h-16 items-center gap-4 border-b bg-muted/40 px-4 lg:px-6 justify-between' >
+            <BackAndForWardButton className='md:hidden' />
             <HeaderIndicator />
             <div className='flex flex-row gap-4 items-center'>
               <div
@@ -112,7 +112,9 @@ const DashboardLayout = async ({
               </div>
               <ModeToggle />
 
-              <DropdownMenu>
+              <DropdownMenu
+                // MARK: UserButton
+              >
                 <DropdownMenuTrigger asChild>
                   <button className='w-[36px] h-[36px] rounded-full border-white' >
                     <Image src={session?.user?.image || ''} alt="user" width={500} height={500} className="w-[36px] h-[36px] rounded-full border" />
@@ -124,7 +126,7 @@ const DashboardLayout = async ({
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem >
-                    <Link href="/settings">Settings</Link>
+                    <Link href="/dashboard/settings">Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem >
                     <form 

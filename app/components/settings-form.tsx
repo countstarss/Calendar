@@ -29,7 +29,7 @@ const SettingsForm = () => {
   
 
   return (
-    <Card>
+    <Card className='w-[350px]'>
       <CardHeader>
         <CardTitle>Settings</CardTitle>
         <CardDescription>Manage your account settings.</CardDescription>

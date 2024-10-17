@@ -1,8 +1,6 @@
 import { updateAvailability } from '@/actions/AvailabilityActions';
 import { SubmitButton } from '@/app/components/submit-button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import prisma from '@/lib/db';
@@ -38,7 +36,9 @@ const AvailabilityPageProps = async ({
 
   return (
     // Card
-    <Card>
+    <Card
+    // MARK: Availability
+    >
       <CardHeader>
         <CardTitle>Availability</CardTitle>
         <CardDescription>Manage your availability time for booking.</CardDescription>
@@ -56,48 +56,53 @@ const AvailabilityPageProps = async ({
                 key={item.id}
               >
                 <input type="hidden" name={`id-${item.id}`} value={item.id} />
-                <div className="flex items-center gap-x-3">
+                <div className="flex items-center gap-x-6 flex-row justify-start">
                   <Switch
                     name={`isActive-${item.id}`}
                     defaultChecked={item.isActive}
                   />
                   <p>{item.day}</p>
                 </div>
-                <Select
-                  name={`fromTime-${item.id}`}
-                  defaultValue={item.fromTime}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="From Time" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup className='grid grid-cols-3'>
-                      {times.map((time) => (
-                        <SelectItem key={time.id} value={time.time}>
-                          {time.time}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-                <Select
-                  name={`tillTime-${item.id}`}
-                  defaultValue={item.tillTime}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="To Time" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      {times.map((time) => (
-                        <SelectItem key={time.id} value={time.time}>
-                          {time.time}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
+
+                {/* <div className="flex flex-col gap-2 md:flex-row"> */}
+
+                  <Select
+                    name={`fromTime-${item.id}`}
+                    defaultValue={item.fromTime}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="From Time" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup className='grid grid-cols-3'>
+                        {times.map((time) => (
+                          <SelectItem key={time.id} value={time.time}>
+                            {time.time}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <Select
+                    name={`tillTime-${item.id}`}
+                    defaultValue={item.tillTime}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="To Time" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {times.map((time) => (
+                          <SelectItem key={time.id} value={time.time}>
+                            {time.time}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+              // </div>
             ))
           }
         </CardContent>

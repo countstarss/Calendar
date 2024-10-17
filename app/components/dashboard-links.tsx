@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { CalendarCheck, HomeIcon, Settings, Users2 } from "lucide-react";
+import { CalendarCheck, HomeIcon, Plus, Settings, Users2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -24,12 +24,6 @@ export const dashboardLinks = [
     name: "Availablity",
     href: "/dashboard/availability",
     icon: CalendarCheck,
-  },
-  {
-    id: 3,
-    name: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
   },
 ];
 

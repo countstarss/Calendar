@@ -14,7 +14,13 @@ const HeaderIndicator = ({
 
   return (
     <div className='w-full'>
-      <h1 className='text-xl font-normal'>{dashboardLinks.filter(link => link.href === pathname)[0].name}</h1>
+      <h1 className='text-xl font-normal'>
+        {
+          // 如果不存在匹配的链接，则直接使用路径的第二部分作为标题
+          dashboardLinks.filter(link => link.href === pathname)[0] ? 
+            dashboardLinks.filter(link => link.href === pathname)[0].name : pathname.split("/")[2]
+        }
+      </h1>
     </div>
   );
 };
