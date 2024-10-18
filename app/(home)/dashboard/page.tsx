@@ -109,15 +109,8 @@ const Dashboard = async ({
                               meetingUrl={`${process.env.NEXT_PUBLIC_URL}/${data.userName}/${eventType.url}`}
                             /> */}
                             <DropdownMenuItem asChild>
-                              <Link href={`/dashboard/event/${eventType.id}`}
-                              // MARK: Menu-Copy
-                              >
-                                <Link2 className="mr-2 h-4 w-4" />
-                                <span>Copy</span>
-                              </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                              <Link href={`/dashboard/event/${eventType.id}`}
+                              <Link 
+                                href={`/dashboard/event/${eventType.id}`}
                               // MARK: Menu-Edit
                               >
                                 <Pen className="mr-2 h-4 w-4" />
@@ -138,7 +131,7 @@ const Dashboard = async ({
                       </DropdownMenu>
                     </div>
 
-                    <Link href={`/dashboard/event/${eventType.id}`}>
+                    <Link href={`/${data.userName}/${eventType.url}`}>
                       <div className='flex gap-2 p-4 items-center'>
                         <Users2 className='size-4' />
                         <div className="ml-5 w-0 flex-1">

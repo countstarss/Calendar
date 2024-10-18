@@ -5,35 +5,53 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 
 
-const BackAndForWardButton: React.FC<{ className?: string }> = ({
-  className
+const BackAndForWardButton: React.FC<{
+  className?: string,
+  onClick?: () => void,
+  backActive?: boolean,
+  forwardActive?: boolean,
+}> = ({
+  className,
+  onClick,
+  backActive,
+  forwardActive,
 }) => {
-  const router = useRouter()
-  return (
-    <div className={`
+    const router = useRouter()
+    return (
+      <div className={`
             flex
             flex-row
             gap-x-2
             items-center
             ${className}
           `}>
-            <button className='
-              rounded-full
-              bg-black/5
-              flex
-              p-1
-              items-center
-              justify-center
-              hover:opacity-55
-              transition'
+        {
+          backActive && (
+            <button
+              // MARK: - Back Button
+              className='
+                rounded-full
+                bg-black/5
+                flex
+                p-1
+                items-center
+                justify-center
+                hover:opacity-55
+                transition'
               onClick={() => router?.back()}
             >
-              <ArrowLeft 
-                className='cursor-pointer text-black/30' 
+              <ArrowLeft
+                className='cursor-pointer text-black/30'
                 size={24}
               />
             </button>
-            <button className='
+          )
+        }
+        {
+          forwardActive && (
+            <button
+              // MARK: - Forward Button
+              className='
               rounded-full
               bg-black/5
               flex
@@ -44,13 +62,15 @@ const BackAndForWardButton: React.FC<{ className?: string }> = ({
               transition'
               onClick={() => router.forward()}
             >
-              <ArrowRight 
-                className='cursor-pointer text-black/30' 
+              <ArrowRight
+                className='cursor-pointer text-black/30'
                 size={24}
               />
             </button>
-          </div>
-  );
-};
+          )
+        }
+      </div>
+    );
+  };
 
 export default BackAndForWardButton;

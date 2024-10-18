@@ -6,7 +6,7 @@ import { Switch } from '@/components/ui/switch';
 import prisma from '@/lib/db';
 import { getSession } from '@/lib/hooks';
 import { times } from '@/lib/times';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface AvailabilityPagePropsProps {
   // You can define any props needed here
@@ -44,8 +44,6 @@ const AvailabilityPageProps = async ({
         <CardDescription>Manage your availability time for booking.</CardDescription>
       </CardHeader>
       <form noValidate
-      // id={form.id} 
-        // onSubmit={handleSubmit} 
         action={updateAvailability}
       > 
         <CardContent className="flex flex-col gap-y-4">
