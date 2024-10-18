@@ -75,6 +75,7 @@ const OnboardingPage = () => {
                   value={fullName}
                   onChange={handleFullNameChange} // Full Name 改变
                   className="text-base"
+                  autoComplete='off'
                 />
                 <p className="text-red-500 text-[12px] text-truncate">
                   {fields.fullName.errors}
@@ -96,6 +97,7 @@ const OnboardingPage = () => {
                     className="rounded-l-none text-md"
                     value={userName}
                     onChange={handleUserNameChange} // UserName 改变
+                    autoComplete='off'
                   />
                 </div>
                 <p className="text-red-500 text-[12px] text-truncate">

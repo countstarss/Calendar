@@ -1,5 +1,4 @@
 import React from 'react';
-import { auth } from '@/lib/auth';
 import { notFound, redirect } from 'next/navigation';
 import { getSession } from '@/lib/hooks';
 import prisma from '@/lib/db';

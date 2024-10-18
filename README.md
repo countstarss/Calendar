@@ -69,5 +69,6 @@ export function onboardingSchemaValidator(options: {
 
 - 将action中的schema替换成 onboardingSchemaValidator，并添加 isUsernameUnique 方法（通过 prisma 查询 userName 是否唯一）
 
+### BookingForm 使用 React-aria 和 shadcn 
 
-
+### 再看一下 Calendar 的实现

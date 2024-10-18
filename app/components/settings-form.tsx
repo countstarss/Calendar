@@ -29,7 +29,7 @@ const SettingsForm = () => {
   
 
   return (
-    <Card className='w-[350px]'>
+    <Card className='w-[450px]'>
       <CardHeader>
         <CardTitle>Settings</CardTitle>
         <CardDescription>Manage your account settings.</CardDescription>
@@ -45,6 +45,7 @@ const SettingsForm = () => {
               // key={fields.fullName.key}
               placeholder="Luke king"
               // defaultValue={fullName}
+              autoComplete='off'
             />
             <p className="text-red-500 text-sm">{
             // fields.fullName.errors

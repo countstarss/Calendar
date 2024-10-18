@@ -43,12 +43,15 @@ const NewEvent = ({
   // 当 fullName 改变时，自动更新 userName
   useEffect(() => {
     if (title) {
-      setUrl(title.replace(/\s+/g, "").toLowerCase());
+      setUrl(title.replace(/\s+/g, "-").toLowerCase());
+    }
+    if (title === "") {
+      setUrl("");
     }
   }, [title]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value); // 更新 fullName 状态
+    setTitle(e.target.value); // 更新 title 状态
   };
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,10 +63,10 @@ const NewEvent = ({
       <Card>
         <CardHeader>
           <CardTitle>Add New Event Type</CardTitle>
-          <CardDescription>Create a new event type to allow user to book</CardDescription>
+          {/* <CardDescription>Create a new event type to allow user to book</CardDescription> */}
         </CardHeader>
         <form action={action} id={form.id} onSubmit={form.onSubmit}>
-          <CardContent className='flex flex-col gap-y-4 w-[350px]'>
+          <CardContent className='flex flex-col gap-y-2 w-[450px]'>
             <div className='flex flex-col gap-2'
               // MARK: Title
             >
@@ -77,6 +80,7 @@ const NewEvent = ({
                 value={title}
                 onChange={handleTitleChange}
                 className="text-base"
+                autoComplete='off'
               />
             </div>
 
@@ -98,6 +102,7 @@ const NewEvent = ({
                   className="rounded-l-none text-md"
                   value={url}
                   onChange={handleUrlChange}
+                  autoComplete='off'
                 />
               </div>
               <p className="text-red-500 text-[12px] text-truncate">{fields.url.errors}</p>
